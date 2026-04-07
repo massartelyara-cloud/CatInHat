@@ -11,10 +11,10 @@ public class DropZone2D : MonoBehaviour
         DraggableSprite item = other.GetComponent<DraggableSprite>();
         if (item == null) return;
 
-        // Snap fish to the center of this drop zone
+        // Snap to the center of this drop zone
         other.transform.position = transform.position;
         item.enabled = false;
-        Debug.Log("Fish placed correctly!");
+        Debug.Log("Placed correctly!");
     }
 
     void OnTriggerExit2D(Collider2D other)

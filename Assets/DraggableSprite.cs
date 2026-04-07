@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class DraggableSprite : MonoBehaviour
 {
-    
+    public bool IsDragging { get; private set; }
+
     private Vector3 offset;
     private Camera mainCam;
     private Vector3 startPosition;
@@ -15,9 +16,8 @@ public class DraggableSprite : MonoBehaviour
 
     void OnMouseDown()
     {
-        // Calculate offset so the sprite doesn't "jump" to mouse center
         offset = transform.position - GetMouseWorldPos();
-        
+        IsDragging = true;
     }
 
     void OnMouseDrag()
@@ -25,12 +25,15 @@ public class DraggableSprite : MonoBehaviour
         transform.position = GetMouseWorldPos() + offset;
     }
 
-    
+    void OnMouseUp()
+    {
+        IsDragging = false;
+    }
 
     private Vector3 GetMouseWorldPos()
     {
         Vector3 mousePos = Input.mousePosition;
-        mousePos.z = Mathf.Abs(mainCam.transform.position.z); // distance from cam
+        mousePos.z = Mathf.Abs(mainCam.transform.position.z);
         return mainCam.ScreenToWorldPoint(mousePos);
     }
 

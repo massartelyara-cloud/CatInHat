@@ -7,7 +7,7 @@ public class HotColdMeter : MonoBehaviour
     public float maxDistance = 10f; // Distance at which it's "freezing"
 
     private DraggableSprite activeDraggable;
-    private Transform targetZone;
+    private Transform targetZone; // remembers dropzone it needs to be in 
 
     void Update()
     {
@@ -20,15 +20,15 @@ public class HotColdMeter : MonoBehaviour
             if (item.IsDragging)
             {
                 activeDraggable = item;
-                break;
+                break; // are you being dragged now ??
             }
         }
 
         if (activeDraggable == null)
         {
-            // Nothing being dragged — hide the meter
+            
             meterImage.color = Color.clear;
-            return;
+            return; // meter goes away if nothing is being dragged
         }
 
         // Find the matching drop zone for this item
